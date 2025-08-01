@@ -75,12 +75,16 @@ class FashionMNIST_Training:
         img, label = train_features_batch[random_idx], train_labels_batch[random_idx]
 
     def review_dataset(self):
-        """Review the test data"""
+        """Review the data set"""
         image, label = self.train_data[0]
         print(f"image shape: {image.shape}, [color_channels=1, height=28, width=28]")
         print(f" length of training data: {len(self.train_data.data)},  length of training data targets: {len(self.train_data.targets)}")
         print(f" length of test data: {len( self.test_data.data)},  length of test data targets: {len( self.test_data.targets)}")
         print(f"class names: {self.class_names}")
+        print(f"Train Data Loader: {self.train_dataloader}")
+        print(f"Test Data Loaders: {self.test_dataloader}")
+        print(f"Length of train dataloader: {len(self.train_dataloader)}")
+        print(f"Length of test dataloader: {len(self.test_dataloader)}")
         # Plot images
         torch.manual_seed(self.seed)
         fig = plt.figure(figsize=(9, 9))
@@ -92,6 +96,7 @@ class FashionMNIST_Training:
             plt.imshow(img.squeeze(), cmap="gray")
             plt.title(self.class_names[label])
             plt.axis(False)
+        plt.show(block=True)
 
 
     def main_loop(self):
